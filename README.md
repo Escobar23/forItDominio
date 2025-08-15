@@ -1,4 +1,4 @@
-# Sistema de Gestión de Biblioteca
+# Sistema de Gestión de Biblioteca (sin terminar)
 
 Este proyecto es un sistema simple para la gestión de una biblioteca, desarrollado siguiendo **Arquitectura Limpia** y **TDD** con **Node.js + TypeScript**.
 
