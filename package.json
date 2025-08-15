@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+        "lint": "eslint . --fix --report-unused-disable-directives",
+        "format": "prettier --write .",
+        "fe": "yarn workspaces foreach -vvpA --exclude '.'",
+        "fet": "yarn fe --topological",
+        "test": "yarn fe --exclude 'packages/templates/*' run test --run --clearScreen false",
+        "build": "yarn workspace domain build"
+    },
    "private": true,
   "workspaces": [
     "domain",
