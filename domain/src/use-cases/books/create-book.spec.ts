@@ -1,5 +1,5 @@
 import { createBookUseCase } from "./create-book";
-import { Book } from "../../entities/libro";
+import { Book } from "../../entities/book";
 import { describe, test, expect } from "vitest";
 
 

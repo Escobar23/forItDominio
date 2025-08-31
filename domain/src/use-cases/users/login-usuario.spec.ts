@@ -1,6 +1,6 @@
 import { describe, test, expect } from "vitest";
 import { LoginUsuario, UsuarioRepository } from "./login-usuario";
-import { User } from "../../entities/usuarios";
+import { User } from "../../entities/users";
 
 const fakeUser: User = {
   id: "1",

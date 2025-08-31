@@ -1,5 +1,5 @@
 // domain/src/use-cases/books/create-book.ts
-import { Book, createBook } from "../../entities/libro";
+import { Book, createBook } from "../../entities/book";
 
 export function createBookUseCase(
   id: string,
