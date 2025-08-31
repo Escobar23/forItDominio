@@ -1,42 +1,42 @@
-import { Prestamo } from "../entities/prestamos.js";
+import { Loan } from "../entities/loans.js";
 
-export const PrestamoService = {
-  estaDevuelto: (prestamo: Prestamo): boolean => {
-    return prestamo.fechaDevolucion !== null;
+export const LoanService = {
+  isReturned: (loan: Loan): boolean => {
+    return loan.returnDate !== null;
   },
 
-  devolver: (prestamo: Prestamo): Prestamo => {
-    if (PrestamoService.estaDevuelto(prestamo)) {
+  toReturn: (loan: Loan): Loan => {
+    if (LoanService.isReturned(loan)) {
       throw new Error('El libro ya fue devuelto');
     }
     return {
-      ...prestamo,
-      fechaDevolucion: new Date()
+      ...loan,
+      returnDate: new Date()
     };
   },
 
-  estaVencido: (prestamo: Prestamo, diasPermitidos: number = 14): boolean => {
-    if (PrestamoService.estaDevuelto(prestamo)) {
+  isExpired: (loan: Loan, allowedDays: number = 14): boolean => {
+    if (LoanService.isReturned(loan)) {
       return false;
     }
     
-    const hoy = new Date();
-    const fechaVencimiento = new Date(prestamo.fechaPrestamo);
-    fechaVencimiento.setDate(fechaVencimiento.getDate() + diasPermitidos);
+    const today = new Date();
+    const expirationDate = new Date(loan.loanDate);
+    expirationDate.setDate(expirationDate.getDate() + allowedDays);
     
-    return hoy > fechaVencimiento;
+    return today > expirationDate;
   },
 
-  diasAtraso: (prestamo: Prestamo, diasPermitidos: number = 14): number => {
-    if (!PrestamoService.estaVencido(prestamo, diasPermitidos)) {
+  diasAtraso: (loan: Loan, allowedDays: number = 14): number => {
+    if (!LoanService.isExpired(loan, allowedDays)) {
       return 0;
     }
     
-    const hoy = new Date();
-    const fechaVencimiento = new Date(prestamo.fechaPrestamo);
-    fechaVencimiento.setDate(fechaVencimiento.getDate() + diasPermitidos);
+    const today = new Date();
+    const expirationDate = new Date(loan.loanDate);
+    expirationDate.setDate(expirationDate.getDate() + allowedDays);
     
-    const diferencia = hoy.getTime() - fechaVencimiento.getTime();
-    return Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+    const difference = today.getTime() - expirationDate.getTime();
+    return Math.ceil(difference / (1000 * 60 * 60 * 24));
   }
 };

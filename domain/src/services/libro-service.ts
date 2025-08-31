@@ -1,38 +1,35 @@
-import { Libro } from '../entities/libro';
+import { Book } from '../entities/book';
 
-export const LibroService = {
-  tieneDisponibilidad: (libro: Libro): boolean => {
-    return libro.ejemplaresDisponibles > 0;
+export const BookService = {
+  hasAvailability: (libro: Book): boolean => {
+    return libro.availableCopies > 0;
   },
 
-  prestar: (libro: Libro): Libro => {
-    if (!LibroService.tieneDisponibilidad(libro)) {
+  toLend: (book: Book): Book => {
+    if (!BookService.hasAvailability(book)) {
       throw new Error('No hay ejemplares disponibles');
     }
     return {
-      ...libro,
-      ejemplaresDisponibles: libro.ejemplaresDisponibles - 1
+      ...book,
+      availableCopies: book.availableCopies - 1
     };
   },
 
-  devolver: (libro: Libro): Libro => {
+  toReturn: (book: Book): Book=> {
     return {
-      ...libro,
-      ejemplaresDisponibles: libro.ejemplaresDisponibles + 1
+      ...book,
+      availableCopies: book.availableCopies + 1
     };
   },
 
-  validarDatos: (datos: Partial<Libro>): void => {
-    if (!datos.titulo?.trim()) {
+  validateData: (datos: Partial<Book>): void => {
+    if (!datos.title?.trim()) {
       throw new Error('Título es requerido');
     }
-    if (!datos.autor?.trim()) {
+    if (!datos.author?.trim()) {
       throw new Error('Autor es requerido');
     }
-    if (!datos.isbn?.trim()) {
-      throw new Error('ISBN es requerido');
-    }
-    if (datos.ejemplaresDisponibles === undefined || datos.ejemplaresDisponibles < 0) {
+    if (datos.availableCopies === undefined || datos.availableCopies < 0) {
       throw new Error('Ejemplares disponibles debe ser mayor o igual a 0');
     }
   }
