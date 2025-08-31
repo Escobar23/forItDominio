@@ -1,16 +1,16 @@
 export interface Usuario {
   id: string;
-  nombre: string;
+  name: string;
   email: string;
-  contraseñaHash: string;
-  rol: 'ADMIN' | 'BIBLIOTECARIO' | 'USUARIO';
+  hashPassword: string;
+  rol: 'ADMIN' | 'LIBRARIAN' | 'USER';
 }
 export function crearUsuario(
   id: string,
-  nombre: string,
+  name: string,
   email: string,
-  contraseñaHash: string,
-  rol: 'ADMIN' | 'BIBLIOTECARIO' | 'USUARIO'
+  hashPassword: string,
+  rol: 'ADMIN' | 'LIBRARIAN' | 'USER'
 ): Usuario {
-  return { id, nombre, email, contraseñaHash, rol };
+  return { id, name, email, hashPassword, rol };
 }
