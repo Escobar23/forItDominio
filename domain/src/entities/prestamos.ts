@@ -1,4 +1,4 @@
-export interface Prestamo {
+export interface Loan {
   readonly id: string;
   readonly userId: string;
   readonly bookId: string;
@@ -6,12 +6,12 @@ export interface Prestamo {
   readonly returnDate: Date | null;
 }
 
-export function crearPrestamo(
+export function createLoan(
   id: string,
   userId: string,
   bookId: string,
   loanDate: Date = new Date(),
   returnDate: Date | null = null
-): Prestamo {
+): Loan {
   return { id, userId, bookId, loanDate, returnDate: null };
 }
