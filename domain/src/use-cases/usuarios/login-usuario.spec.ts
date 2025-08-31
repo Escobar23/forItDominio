@@ -1,19 +1,19 @@
 import { describe, test, expect } from "vitest";
 import { LoginUsuario, UsuarioRepository } from "./login-usuario";
-import { Usuario } from "../../entities/usuarios";
+import { User } from "../../entities/usuarios";
 
-const fakeUser: Usuario = {
+const fakeUser: User = {
   id: "1",
-  nombre: "Sofía",
+  name: "Sofía",
   email: "sofia@test.com",
-  contraseñaHash: "1234",
+  hashPassword: "1234",
   rol: "ADMIN",
 };
 
 class InMemoryUsuarioRepo implements UsuarioRepository {
-  private usuarios: Usuario[] = [fakeUser];
+  private usuarios: User[] = [fakeUser];
 
-  async findByEmail(email: string): Promise<Usuario | null> {
+  async findByEmail(email: string): Promise<User | null> {
     return this.usuarios.find(u => u.email === email) || null;
   }
 }
