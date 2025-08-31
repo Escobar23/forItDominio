@@ -1,17 +1,17 @@
-export interface Libro {
+export interface Book {
   readonly id: string;
   readonly title: string;
   readonly author: string;
   state: 'IN_PROGRESS' | 'RETURNED' | 'OVERDUE';
-  ejemplaresDisponibles: number;
+  availableCopies: number;
 }
 
-export function crearLibro(
+export function createBook(
   id: string,
   title: string,
   author: string,
   state:  'IN_PROGRESS' | 'RETURNED' | 'OVERDUE',
-  ejemplaresDisponibles: number
-): Libro {
-  return { id, title, author, state, ejemplaresDisponibles };
+  availableCopies: number
+): Book {
+  return { id, title, author, state, availableCopies };
 }

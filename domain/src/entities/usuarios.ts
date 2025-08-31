@@ -1,16 +1,16 @@
-export interface Usuario {
+export interface User {
   id: string;
   name: string;
   email: string;
   hashPassword: string;
   rol: 'ADMIN' | 'LIBRARIAN' | 'USER';
 }
-export function crearUsuario(
+export function createUser(
   id: string,
   name: string,
   email: string,
   hashPassword: string,
   rol: 'ADMIN' | 'LIBRARIAN' | 'USER'
-): Usuario {
+): User {
   return { id, name, email, hashPassword, rol };
 }
