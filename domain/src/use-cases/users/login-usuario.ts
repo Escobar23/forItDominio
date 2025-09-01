@@ -1,23 +1,17 @@
 import { User } from "../../entities/users";
 
-export interface UsuarioRepository {
-  findByEmail(email: string): Promise<User | null>;
-}
+export function loginUseCase(
+  username: string,
+  password: string,
+  users: User[]
+): User {
+  const user = users.find(
+    (u) => u.username === username && u.hashPassword === password
+  );
 
-export class LoginUsuario {
-  constructor(private usuarioRepository: UsuarioRepository) {}
-
-  async execute(email: string, password: string): Promise<User> {
-    const user = await this.usuarioRepository.findByEmail(email);
-    if (!user) {
-      throw new Error("Usuario no encontrado");
-    }
-
-    // comparación básica (en un caso real usaríamos bcrypt)
-    if (user.hashPassword !== password) {
-      throw new Error("Contraseña incorrecta");
-    }
-
-    return user;
+  if (!user) {
+    throw new Error("Invalid credentials");
   }
+
+  return user;
 }
