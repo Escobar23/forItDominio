@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest";
-import { loginUseCase } from "./login-usuario";
+import { loginUseCase } from "./login-user";
 import { User } from "../../entities/users";
 
 describe("LoginUseCase", () => {
