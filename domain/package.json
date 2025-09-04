@@ -1,13 +1,25 @@
 {
-  "name": "@dominioproject/domain",
+  "extends": "../tsconfig.json",
+  "name": "domain",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "index.js",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "scripts": {
-    "test": "vitest",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@types/node": "^24.2.1",
-    "vitest": "^3.2.4"
+    "vitest": "^latest",
+    "@types/node": "^latest"
   }
 }
